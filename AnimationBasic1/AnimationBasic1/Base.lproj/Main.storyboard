@@ -43,6 +43,10 @@
                                     <segue destination="Geb-6q-LcP" kind="show" id="NnY-bj-J8F"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JVd-6l-t9h" customClass="RadioButton" customModule="AnimationBasic1" customModuleProvider="target">
+                                <rect key="frame" x="180" y="458" width="54" height="34"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -50,6 +54,8 @@
                             <constraint firstItem="OKI-ja-Jwm" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="27" id="9GV-aK-GDv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="lM8-E3-5EF" secondAttribute="bottom" constant="50" id="Aon-tX-x6x"/>
                             <constraint firstItem="OKI-ja-Jwm" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="oYG-No-4dD"/>
+                            <constraint firstItem="JVd-6l-t9h" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="wEx-VV-sPq"/>
+                            <constraint firstItem="JVd-6l-t9h" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="x9J-dL-cVk"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>

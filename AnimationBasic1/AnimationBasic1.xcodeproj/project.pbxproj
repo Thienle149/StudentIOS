@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1615E5C523CC0EEA00B7ED3A /* BouncyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1615E5C423CC0EEA00B7ED3A /* BouncyViewController.swift */; };
 		1615E5C723CC1D9E00B7ED3A /* AnimationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1615E5C623CC1D9E00B7ED3A /* AnimationTableViewController.swift */; };
+		1615E5C923CC314600B7ED3A /* RadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1615E5C823CC314600B7ED3A /* RadioButton.swift */; };
 		16A3C60A23CBFF270096414E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A3C60923CBFF270096414E /* AppDelegate.swift */; };
 		16A3C60C23CBFF270096414E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A3C60B23CBFF270096414E /* SceneDelegate.swift */; };
 		16A3C60E23CBFF270096414E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A3C60D23CBFF270096414E /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		1615E5C423CC0EEA00B7ED3A /* BouncyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BouncyViewController.swift; sourceTree = "<group>"; };
 		1615E5C623CC1D9E00B7ED3A /* AnimationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationTableViewController.swift; sourceTree = "<group>"; };
+		1615E5C823CC314600B7ED3A /* RadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadioButton.swift; sourceTree = "<group>"; };
 		16A3C60623CBFF270096414E /* AnimationBasic1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AnimationBasic1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		16A3C60923CBFF270096414E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		16A3C60B23CBFF270096414E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				16A3C61723CBFF290096414E /* Info.plist */,
 				1615E5C423CC0EEA00B7ED3A /* BouncyViewController.swift */,
 				1615E5C623CC1D9E00B7ED3A /* AnimationTableViewController.swift */,
+				1615E5C823CC314600B7ED3A /* RadioButton.swift */,
 			);
 			path = AnimationBasic1;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				1615E5C523CC0EEA00B7ED3A /* BouncyViewController.swift in Sources */,
 				16A3C60E23CBFF270096414E /* ViewController.swift in Sources */,
 				16A3C60A23CBFF270096414E /* AppDelegate.swift in Sources */,
+				1615E5C923CC314600B7ED3A /* RadioButton.swift in Sources */,
 				1615E5C723CC1D9E00B7ED3A /* AnimationTableViewController.swift in Sources */,
 				16A3C60C23CBFF270096414E /* SceneDelegate.swift in Sources */,
 			);
