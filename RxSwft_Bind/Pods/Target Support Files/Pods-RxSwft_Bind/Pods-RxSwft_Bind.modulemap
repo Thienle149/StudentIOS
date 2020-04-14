@@ -1,0 +1,6 @@
+framework module Pods_RxSwft_Bind {
+  umbrella header "Pods-RxSwft_Bind-umbrella.h"
+
+  export *
+  module * { export * }
+}

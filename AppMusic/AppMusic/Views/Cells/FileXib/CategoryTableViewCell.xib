@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="68" id="KGk-i7-Jjw" customClass="CategoryTableViewCell" customModule="AppMusic" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="68"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="faI-fy-xka" customClass="CustomImageView" customModule="AppMusic" customModuleProvider="target">
+                        <rect key="frame" x="8" y="8" width="48" height="48"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="48" id="L94-Js-oeP"/>
+                            <constraint firstAttribute="width" constant="48" id="tbT-He-vJ8"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpG-ML-5ab">
+                        <rect key="frame" x="76" y="-21" width="204" height="106"/>
+                        <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
+                        <color key="textColor" red="0.99233237258916052" green="1" blue="0.64975777111648436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="highlightedColor" red="0.89793845817889484" green="0.93214625634517767" blue="0.72693160417086922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ta0-Du-ig7">
+                        <rect key="frame" x="288" y="20" width="24" height="24"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="24" id="OS6-Wj-jsX"/>
+                            <constraint firstAttribute="height" constant="24" id="dIv-ar-kV6"/>
+                        </constraints>
+                        <state key="normal" image="download"/>
+                        <connections>
+                            <action selector="downloadContent:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="a2H-cd-k1a"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="ta0-Du-ig7" secondAttribute="trailing" constant="8" id="3md-cx-tNy"/>
+                    <constraint firstItem="fpG-ML-5ab" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-32" id="6wh-H4-iB7"/>
+                    <constraint firstItem="fpG-ML-5ab" firstAttribute="centerY" secondItem="faI-fy-xka" secondAttribute="centerY" id="J2d-ft-9rI"/>
+                    <constraint firstItem="faI-fy-xka" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="KiZ-yr-HD0"/>
+                    <constraint firstItem="fpG-ML-5ab" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="bg2-Yw-y5e"/>
+                    <constraint firstAttribute="bottom" secondItem="faI-fy-xka" secondAttribute="bottom" constant="8" id="jhD-sm-lsj"/>
+                    <constraint firstItem="faI-fy-xka" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="8" id="oQP-EW-Lgj"/>
+                    <constraint firstItem="ta0-Du-ig7" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ry6-rJ-a3M"/>
+                    <constraint firstItem="fpG-ML-5ab" firstAttribute="leading" secondItem="faI-fy-xka" secondAttribute="trailing" constant="20" id="trs-z1-x5z"/>
+                    <constraint firstItem="ta0-Du-ig7" firstAttribute="leading" secondItem="fpG-ML-5ab" secondAttribute="trailing" constant="8" id="wOQ-5A-3xz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.12860107143632313" green="0.14117647059999999" blue="0.13883842293450044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="btnDownload" destination="ta0-Du-ig7" id="Zr0-Gz-HKZ"/>
+                <outlet property="imageCategory" destination="faI-fy-xka" id="352-R5-aTD"/>
+                <outlet property="lblName" destination="fpG-ML-5ab" id="u8H-Jo-msj"/>
+            </connections>
+            <point key="canvasLocation" x="131.8840579710145" y="95.758928571428569"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="download" width="96" height="96"/>
+    </resources>
+</document>

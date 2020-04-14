@@ -1,0 +1,6 @@
+framework module Pods_SQL_Lite {
+  umbrella header "Pods-SQL_Lite-umbrella.h"
+
+  export *
+  module * { export * }
+}
