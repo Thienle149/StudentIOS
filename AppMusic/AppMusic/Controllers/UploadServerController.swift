@@ -61,6 +61,10 @@ class UploadServerController: UIViewController {
 		self.configDropDownView()
 	}
 	
+	@IBAction func backUploadController(_ sender: Any) {
+		self.dismiss(animated: true) {
+		}
+	}
 	fileprivate func configBtnRemoveImage() {
 		self.widthBtnRemoveImage.constant = 0
 		let width = self.btnRemoveImage.frame.width

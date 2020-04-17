@@ -10,12 +10,13 @@ import Foundation
 import UIKit
 class CutomTabBarController: UITabBarController {
 	
-	private let imagesAsset = ["tabbar-libary","tabbar-foryou","tabbar-local","tabbar-upload"]
-	private let titles = ["Libary","For You","Local","Upload"]
-	var appController = AppController()
-	var forYouController = ForYouController()
-	var localController = LocalController()
-	var uploadServerController: UploadServerController!
+	private let imagesAsset = ["tabbar-libary","tabbar-foryou","tabbar-questionanswer","tabbar-local","tabbar-upload"]
+	private let titles = ["Libary","For You","Kiểm tra","Local","Upload"]
+	lazy var appController = AppController()
+	lazy var forYouController = ForYouController()
+	lazy var localController = LocalController()
+	var uploadController =  UploadController()
+	lazy var  questionAnswerControleller = QuestionAnswerController()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -24,9 +25,10 @@ class CutomTabBarController: UITabBarController {
 	
 	func configureTabBar() {
 		
-		uploadServerController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "UploadServerController") as? UploadServerController
-		viewControllers = [appController,forYouController,localController,uploadServerController]
-		customizableViewControllers = [appController,forYouController,localController,uploadServerController]
+		self.tabBar.barTintColor = .black
+		self.tabBar.isTranslucent = true
+		viewControllers = [appController,forYouController,questionAnswerControleller,localController,uploadController]
+		customizableViewControllers = [appController,forYouController,questionAnswerControleller,localController,uploadController]
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)], for: .selected)
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.8549019694, green: 0.250980407, blue: 0.4784313738, alpha: 1)], for: .normal)
 		

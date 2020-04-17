@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestHeaderView" customModule="AppMusic" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="qha-Hh-Qoc" id="8lr-wO-YlB"/>
+                <outlet property="txtNumSubject" destination="8sV-cF-8b3" id="lLw-gt-ZtN"/>
+                <outlet property="txtSubject" destination="Ni6-0Q-8w6" id="sX6-LB-ZmF"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" id="m4h-rp-WpL">
+            <rect key="frame" x="0.0" y="0.0" width="498" height="200"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qha-Hh-Qoc">
+                    <rect key="frame" x="0.0" y="0.0" width="498" height="200"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subject Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PEP-sF-4Kn">
+                            <rect key="frame" x="32" y="48.5" width="151" height="26.5"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="23"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ni6-0Q-8w6">
+                            <rect key="frame" x="32" y="83" width="434" height="34"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits"/>
+                        </textField>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Number:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHj-dz-dEQ">
+                            <rect key="frame" x="32" y="125" width="70" height="20"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                            <color key="textColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="0.90047089039999995" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sV-cF-8b3">
+                            <rect key="frame" x="32" y="153" width="9.5" height="20"/>
+                            <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="17"/>
+                            <color key="textColor" red="0.58081901069999997" green="0.088427625600000004" blue="0.31863921880000001" alpha="0.90047089039999995" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="8sV-cF-8b3" firstAttribute="top" secondItem="rHj-dz-dEQ" secondAttribute="bottom" constant="8" id="5HR-yR-or2"/>
+                        <constraint firstItem="Ni6-0Q-8w6" firstAttribute="top" secondItem="PEP-sF-4Kn" secondAttribute="bottom" constant="8" id="BAt-YY-NoS"/>
+                        <constraint firstItem="Ni6-0Q-8w6" firstAttribute="centerY" secondItem="qha-Hh-Qoc" secondAttribute="centerY" id="NeG-XH-pul"/>
+                        <constraint firstItem="rHj-dz-dEQ" firstAttribute="leading" secondItem="qha-Hh-Qoc" secondAttribute="leading" constant="32" id="R2V-CQ-j2N"/>
+                        <constraint firstItem="rHj-dz-dEQ" firstAttribute="top" secondItem="Ni6-0Q-8w6" secondAttribute="bottom" constant="8" id="TNO-bO-4fU"/>
+                        <constraint firstItem="8sV-cF-8b3" firstAttribute="leading" secondItem="qha-Hh-Qoc" secondAttribute="leading" constant="32" id="pQV-P6-50D"/>
+                        <constraint firstItem="Ni6-0Q-8w6" firstAttribute="centerX" secondItem="qha-Hh-Qoc" secondAttribute="centerX" id="u03-Ak-6xG"/>
+                        <constraint firstItem="PEP-sF-4Kn" firstAttribute="leading" secondItem="qha-Hh-Qoc" secondAttribute="leading" constant="32" id="uqy-CS-nh5"/>
+                        <constraint firstItem="Ni6-0Q-8w6" firstAttribute="leading" secondItem="qha-Hh-Qoc" secondAttribute="leading" constant="32" id="wHQ-Ec-bgY"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="CSv-Se-lrh"/>
+            <point key="canvasLocation" x="55.072463768115945" y="-263.16964285714283"/>
+        </stackView>
+    </objects>
+</document>

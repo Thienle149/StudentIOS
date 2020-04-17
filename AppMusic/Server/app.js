@@ -4,11 +4,13 @@ const express = require("express");
 const app = express();
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
-const categories = require("./Routes/Category");
-const medias = require("./Routes/Media");
 const bodyParser = require("body-parser");
 const resize = require("./resize");
 const fs = require("fs");
+// require route
+const categories = require("./Routes/Category");
+const medias = require("./Routes/Media");
+const test = require('./Routes/Test')
 
 require("./socket")(io);
 require("./db");
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 //Route
 app.use("/categories", categories);
 app.use("/medias", medias);
+app.use("/test", test)
 
 //Socket
 app.locals.io = io;

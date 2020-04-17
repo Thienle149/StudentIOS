@@ -35,16 +35,19 @@ class NetworkServices {
 	
 	fileprivate func excute(route: String, method: HTTPMethod = .get, parameters: Parameters? = nil, completion: @escaping WedServiceResponse) {
 		let url = URL(string: "\(NetworkServices.hostname)\(route)")
-		print("###\(url)")
 		if let url = url {
-			AF.request(url, method: method, parameters: parameters).responseJSON{ (response) in
+			AF.request(url, method: method,parameters: parameters, encoding: JSONEncoding.default).responseJSON{ (response) in
 				switch response.result{
 				case.success(let values):
 					let dict = values as! [String:Any?]
 					if let items = dict["result"] as? [[String: Any?]] {
 						completion(items,nil)
 					}
-					
+					else if let item = dict["result"] as? [String: Any?] {
+						completion([item],nil)
+					} else  {
+						completion([dict],nil)
+					}
 				break
 				case.failure(let error):
 					completion(nil,error)
@@ -58,7 +61,8 @@ class NetworkServices {
 	func getData(route: String, parameters: Parameters? = nil,completion: @escaping WedServiceResponse) {
 		self.excute(route: route,parameters: parameters, completion: completion)
 	}
-	func postData() {
+	func postData(route: String, parameters: Parameters? = nil,completion: @escaping WedServiceResponse) {
+		self.excute(route: route,method: .post,parameters: parameters, completion: completion)
 	}
 	
 	func putData() {

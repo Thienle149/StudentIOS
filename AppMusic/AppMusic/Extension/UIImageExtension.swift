@@ -53,4 +53,52 @@ extension UIImage {
 		UIGraphicsEndImageContext()
 		return image
 	}
+	
+	func filledImage( _ fillColor: UIColor) -> UIImage {
+		UIGraphicsBeginImageContextWithOptions(self.size, false, UIScreen.main.scale)
+		fillColor.setFill()
+		if let context = UIGraphicsGetCurrentContext(){
+			context.translateBy(x: 0, y: self.size.height)
+			context.scaleBy(x: 1.0, y: -1.0)
+			
+			context.setBlendMode(CGBlendMode.colorBurn)
+			let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
+			context.draw(self.cgImage!, in: rect)
+			
+			context.setBlendMode(CGBlendMode.sourceIn)
+			context.addRect(rect)
+			context.drawPath(using: CGPathDrawingMode.fill)
+		}
+		
+		let coloredImg : UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+		UIGraphicsEndImageContext()
+		
+		return coloredImg
+	}
+	
+	func resizeImage( _ targetSize: CGSize) -> UIImage {
+        let size = self.size
+        
+        let widthRatio  = targetSize.width  / self.size.width
+        let heightRatio = targetSize.height / self.size.height
+        
+        // Figure out what our orientation is, and use that to form the rectangle
+        var newSize: CGSize
+        if(widthRatio > heightRatio) {
+            newSize = CGSize(width: size.width * heightRatio, height: size.height * heightRatio)
+        } else {
+            newSize = CGSize(width: size.width * widthRatio,  height: size.height * widthRatio)
+        }
+        
+        // This is the rect that we've calculated out and this is what is actually used below
+        let rect = CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height)
+        
+        // Actually do the resizing to the rect using the ImageContext stuff
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1.0)
+        self.draw(in: rect)
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage!
+    }
 }

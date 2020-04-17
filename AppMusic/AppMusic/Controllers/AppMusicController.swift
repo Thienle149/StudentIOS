@@ -14,6 +14,7 @@ protocol AppProperties {
 }
 protocol AppMusicControllerProtocol {
 	func addWidget(title: String?, with view: UIView)
+	func addContentView(_ view: UIView)
 }
 
 class AppMusicController: UIViewController,AppMusicControllerProtocol,AppProperties {
@@ -83,6 +84,13 @@ class AppMusicController: UIViewController,AppMusicControllerProtocol,AppPropert
 		let widget = WidgetView()
 		widget.setUp(title: title, with: view)
 		self.contentView.addArrangedSubview(widget)
+	}
+	
+	func addContentView(_ view: UIView) {
+		self.contentView.addSubview(view)
+		view.snp.makeConstraints { (make) in
+			make.top.leading.bottom.trailing.equalToSuperview()
+		}
 	}
 }
 

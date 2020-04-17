@@ -27,7 +27,7 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fpG-ML-5ab">
                         <rect key="frame" x="76" y="-21" width="204" height="106"/>
                         <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="16"/>
-                        <color key="textColor" red="0.99233237258916052" green="1" blue="0.64975777111648436" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="textColor" red="0.99233237259999996" green="1" blue="0.64975777109999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="highlightedColor" red="0.89793845817889484" green="0.93214625634517767" blue="0.72693160417086922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ta0-Du-ig7">
@@ -55,7 +55,7 @@
                     <constraint firstItem="ta0-Du-ig7" firstAttribute="leading" secondItem="fpG-ML-5ab" secondAttribute="trailing" constant="8" id="wOQ-5A-3xz"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.12860107143632313" green="0.14117647059999999" blue="0.13883842293450044" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="btnDownload" destination="ta0-Du-ig7" id="Zr0-Gz-HKZ"/>

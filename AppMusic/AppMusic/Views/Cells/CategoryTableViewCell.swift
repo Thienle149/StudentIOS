@@ -44,6 +44,10 @@ class CategoryTableViewCell: UITableViewCell {
 		super.setSelected(selected, animated: animated)
 	}
 	
+	func setUp(text: String?) {
+		lblName.text = text
+	}
+	
 	func setUp(media: MediaModel, index: IndexPath, type: LoadType) {
 		self.lblName.text = media.name
 		self.indexPath = index
