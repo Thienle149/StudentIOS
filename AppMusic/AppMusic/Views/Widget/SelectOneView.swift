@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-
 class SelectOneView: UIView, UITableViewDataSource, UITableViewDelegate {
 	var tableView: UITableView!
 	var heightTableView: NSLayoutConstraint!
@@ -40,10 +39,9 @@ class SelectOneView: UIView, UITableViewDataSource, UITableViewDelegate {
 	}
 	
 	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		DispatchQueue.main.async {
 			self.heightTableView.constant = self.tableView.contentSize.height
-//		self.tableView.snp.makeConstraints { (make) in
-//			make.height.equalTo(self.tableView.contentSize.height)
-//		}
+		}
 	}
 	
 	required init?(coder: NSCoder) {
@@ -60,7 +58,9 @@ class SelectOneView: UIView, UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCell(withIdentifier: SelectOneViewCell.identifer) as! SelectOneViewCell
-		cell.setUp(answer: items[indexPath.row].name)
+		
+		cell.setUp(items[indexPath.row])
+		cell.radioButton.onClick = onClickAnswer(_:)
 		return cell
 	}
 	
@@ -70,6 +70,20 @@ class SelectOneView: UIView, UITableViewDataSource, UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
 		return UITableView.automaticDimension
+	}
+	
+	fileprivate func onClickAnswer(_ sender: RadioButton) {
+		for index in 0..<items.count {
+			if let cell = tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? SelectOneViewCell {
+				if cell.radioButton == sender {
+					let checked = cell.radioButton.checked == .checked ? true : false
+					items[index].result = checked
+				} else {
+					items[index].result = false
+					cell.radioButton.setSelected(.unchecked)
+				}
+			}
+		}
 	}
 }
 

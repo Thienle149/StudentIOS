@@ -38,11 +38,18 @@ class SocketServices: NSObject{
 	
 	func responseFromServer() {
 		self.observeMediaOfServer()
+		self.observeTestOfServer()
 	}
 	
 	fileprivate func observeMediaOfServer() {
 		self.socket.on(SocketEventName.on.media.rawValue) { (data, ack) in
 			NotificationCenter.default.post(name: Notification.Name(SocketEventName.on.media.rawValue), object: data[0])
+		}
+	}
+	
+	fileprivate func observeTestOfServer() {
+		self.socket.on(SocketEventName.on.test.rawValue) { (data, ack) in
+			NotificationCenter.default.post(name: Notification.Name(SocketEventName.on.test.rawValue), object: data[0])
 		}
 	}
 }

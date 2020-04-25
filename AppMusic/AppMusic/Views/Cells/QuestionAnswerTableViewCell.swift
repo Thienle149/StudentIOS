@@ -19,7 +19,7 @@ class QuestionAnswerTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//        super.setSelected(selected, animated: animated)
 
         // Configure the view for the selected state
     }
@@ -30,13 +30,5 @@ class QuestionAnswerTableViewCell: UITableViewCell {
 		view.snp.makeConstraints { (make) in
 			make.top.trailing.bottom.leading.equalToSuperview()
 		}
-//		NotificationCenter.default.addObserver(forName: Notification.Name(SelectOneView.observerHeightTableView), object: nil, queue: .main) { (notification) in
-//			if let size = notification.object as? CGSize {
-//				print("###\(size)")
-//				view.snp.makeConstraints { (make) in
-//					make.height.equalTo(size.height)
-//				}
-//			}
-//		}
 	}
 }

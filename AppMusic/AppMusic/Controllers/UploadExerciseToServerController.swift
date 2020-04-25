@@ -11,6 +11,7 @@ import UIKit
 import Alamofire
 protocol UploadExerciseToServerDelegate {
 	func clearData()
+	func remove(section: Int, row: Int?)
 }
 class UploadExerciseToServerController: UIViewController {
 	
@@ -115,7 +116,11 @@ extension UploadExerciseToServerController: UITableViewDataSource, UITableViewDe
 		if questionCells[section].open == false {
 			return 1
 		}
-		return (questionCells[section].question?.answers.count)! + 1
+		if let count = questionCells[section].question?.answers.count {
+			print("###\(count)")
+		return count + 1
+		}
+		return 0
 	}
 	
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -125,12 +130,13 @@ extension UploadExerciseToServerController: UITableViewDataSource, UITableViewDe
 				return cell
 			}
 		}else {
-			if let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell.identifier, for: indexPath) as? CategoryTableViewCell {
+			
+			if let cell = tableView.dequeueReusableCell(withIdentifier: CategoryTableViewCell.identifier) as? CategoryTableViewCell{
 				cell.setUp(text: questionCells[indexPath.section].question.answers[indexPath.row - 1].name)
 				return cell
 			}
 		}
-		return CategorySessionTableViewCell()
+		return UITableViewCell()
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -140,10 +146,42 @@ extension UploadExerciseToServerController: UITableViewDataSource, UITableViewDe
 			} else {
 				questionCells[indexPath.section].open = true
 			}
-			DispatchQueue.main.async {
-				tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
-			}
+			self.tableView.beginUpdates()
+			self.tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
+			self.tableView.endUpdates()
 		}
+	}
+	
+	func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+		return .delete
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+		if indexPath.row != 0 {
+			delegate?.remove(section: indexPath.section, row: indexPath.row - 1)
+			self.tableView.beginUpdates()
+			questions[indexPath.section].answers.remove(at: indexPath.row - 1)
+			questionCells[indexPath.section].question.answers.remove(at: indexPath.row - 1)
+			self.tableView.deleteRows(at: [indexPath], with: .none)
+			self.tableView.endUpdates()
+		} else {
+			delegate?.remove(section: indexPath.section, row: nil)
+			self.tableView.beginUpdates()
+			questions.remove(at: indexPath.section)
+			questionCells.remove(at: indexPath.section)
+			self.tableView.deleteSections(IndexSet(integer: indexPath.section), with: .none)
+			self.tableView.endUpdates()
+		}
+		}
+	}
+	
+	func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableView.automaticDimension
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return UITableView.automaticDimension
 	}
 	
 }

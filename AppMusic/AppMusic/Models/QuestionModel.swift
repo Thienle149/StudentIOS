@@ -29,8 +29,8 @@ struct QuestionModel {
 		if let _id = dict["_id"] as? String {
 			self._id = _id
 		}
-		if let question = dict["name"] as? String {
-			self.name = question
+		if let name = dict["name"] as? String {
+			self.name = name
 		}
 		if let textID = dict["textID"] as? String {
 			self.textID = textID
@@ -45,6 +45,9 @@ struct QuestionModel {
 	static func convertDict(_ model: QuestionModel) -> [String: Any] {
 		var dictionary: [String: Any] = [:]
 		dictionary["name"] = model.name
+		if model._id != nil  {
+		dictionary["_id"] = model._id
+		}
 		var answers:[[String: Any?]] = []
 		for answer in model.answers {
 			answers.append(AnswerModel.convertDict(answer))

@@ -19,6 +19,7 @@ class AnswerTableViewCell: UITableViewCell {
         super.awakeFromNib()
     }
 	override func prepareForReuse() {
+		super.prepareForReuse()
 		self.txtAnswer.text = ""
 		self.radio.check = .unchecked
 	}
@@ -30,7 +31,7 @@ class AnswerTableViewCell: UITableViewCell {
 	}
 	
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+//        super.setSelected(selected, animated: animated)
     }
     
 }

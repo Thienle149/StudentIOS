@@ -17,23 +17,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="bottom" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="jzh-rL-mHA">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" alignment="bottom" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="jzh-rL-mHA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="182"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k65-nv-onD">
                                 <rect key="frame" x="8" y="0.0" width="312" height="23"/>
                                 <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="20"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aY6-yt-6aV">
-                                <rect key="frame" x="0.0" y="31" width="320" height="151"/>
+                                <rect key="frame" x="0.0" y="28" width="320" height="154"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="k65-nv-onD" firstAttribute="top" secondItem="jzh-rL-mHA" secondAttribute="top" id="IFU-pL-9fF"/>
                             <constraint firstItem="k65-nv-onD" firstAttribute="leading" secondItem="jzh-rL-mHA" secondAttribute="leading" constant="8" id="Pvd-SI-ydL"/>
                             <constraint firstItem="aY6-yt-6aV" firstAttribute="leading" secondItem="jzh-rL-mHA" secondAttribute="leading" id="vYm-i3-qFp"/>
                         </constraints>

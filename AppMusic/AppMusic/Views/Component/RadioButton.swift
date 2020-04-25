@@ -13,23 +13,28 @@ class RadioButton: UIView {
 	@IBOutlet var ContentView: UIStackView!
 	@IBOutlet weak var label: UILabel!
 	@IBOutlet weak var imageRadio: UIImageView!
+	var color: UIColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1) {
+		didSet{
+			imageRadio.image = UIImage(named: self.checked.getImage())?.filledImage(color)
+		}
+	}
 	
 	var mode: FERadioButtonType.mode = .one {
 		didSet {
-			imageRadio.image = UIImage(named: self.checked.getImage())?.filledImage(.orange)
+			imageRadio.image = UIImage(named: self.checked.getImage())?.filledImage(color)
 		}
 	}
 	
 	var checked: EventRadio = .unchecked {
 		didSet {
 			DispatchQueue.main.async {
-				self.imageRadio.image = UIImage(named: self.checked.getImage())?.filledImage(.orange)			}
+				self.imageRadio.image = UIImage(named: self.checked.getImage())?.filledImage(self.color)			}
 		}
 	}
 	
 	private var lay = CAShapeLayer()
 	
-	var onClick: (()-> Void?)? = nil
+	var onClick: ((RadioButton)-> Void?)? = nil
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -62,16 +67,17 @@ class RadioButton: UIView {
 	
 	@objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
 		checked == .checked ? checked = .unchecked : (checked = .checked)
-		self.onClick?()
+		self.onClick?(self)
 	}
 	
 	func setSelected(_ isCheck: EventRadio) {
 		checked = isCheck
 	}
 	
-	func setUp(text: String, mode: FERadioButtonType.mode) {
-		self.label.text = text
+	func setUp(text: String?, mode: FERadioButtonType.mode,color: UIColor =  #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)) {
+		self.label.text = text ?? ""
 		self.mode = mode
+		self.color = color
 	}
 }
 

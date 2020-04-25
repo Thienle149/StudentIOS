@@ -17,8 +17,8 @@ protocol NetworkServiceProtocol {
 }
 class NetworkServices {
 	typealias WedServiceResponse = ([[String: Any?]]?,Error?) -> Void
-//	static let hostname = "http://192.168.100.22:3000"
-	static let hostname = "http://localhost:3000"
+	static let hostname = "http://192.168.100.125:3000"
+//	static let hostname = "http://localhost:3000"
 	
 	private static var instance: NetworkServices!
 	
@@ -39,12 +39,11 @@ class NetworkServices {
 			AF.request(url, method: method,parameters: parameters, encoding: JSONEncoding.default).responseJSON{ (response) in
 				switch response.result{
 				case.success(let values):
-					let dict = values as! [String:Any?]
-					if let items = dict["result"] as? [[String: Any?]] {
+					let dict = values as! [String: Any?]
+					if let item = dict["result"] as? [String: Any?] {
+					completion([item],nil)
+					} else if let items = dict["result"] as? [[String: Any?]] {
 						completion(items,nil)
-					}
-					else if let item = dict["result"] as? [String: Any?] {
-						completion([item],nil)
 					} else  {
 						completion([dict],nil)
 					}

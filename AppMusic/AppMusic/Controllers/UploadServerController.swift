@@ -65,6 +65,7 @@ class UploadServerController: UIViewController {
 		self.dismiss(animated: true) {
 		}
 	}
+	
 	fileprivate func configBtnRemoveImage() {
 		self.widthBtnRemoveImage.constant = 0
 		let width = self.btnRemoveImage.frame.width
@@ -305,20 +306,6 @@ extension UploadServerController: UIImagePickerControllerDelegate,UINavigationCo
 			
 		}
 	}
-//	func generateThumnail(url: URL) ->UIImage? {
-//		do {
-//			let asset = AVURLAsset(url: url, options: nil)
-//			let imgGenerator = AVAssetImageGenerator(asset: asset)
-//			imgGenerator.appliesPreferredTrackTransform = true
-//			let cgImage = try imgGenerator.copyCGImage(at: .init(value: 0, timescale: 1), actualTime: nil)
-//			let thumbnail = UIImage(cgImage: cgImage)
-//			return thumbnail
-//
-//		} catch {
-//			print("*** Error generating thumbnail: \(error)")
-//			return nil
-//		}
-//	}
 }
 
 extension UploadServerController: UITextFieldDelegate {

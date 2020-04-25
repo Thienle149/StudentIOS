@@ -12,11 +12,14 @@ class AnswerModel {
 	var name: String!
 	var result:Bool!
 	var questionID: String!
+	// Extra
+	var repaired: Bool = false
 	
 	init() {
-		self._id  = ""
+		//not use id when upload server is error
+//		self._id  = ""
 		self.name = ""
-		self.questionID = ""
+//		self.questionID = ""
 		self.result = false
 	}
 	
@@ -36,12 +39,21 @@ class AnswerModel {
 		if let result = dict["result"] as? Bool {
 			self.result = result
 		}
+		if let repaired = dict["repaired"] as? Bool {
+			self.repaired = repaired
+		}
 		if let questionID = dict["questionID"] as? String {
 			self.questionID = questionID
 		}
 	}
 	
 	static func convertDict(_ model: AnswerModel) -> [String: Any] {
-		return ["name": model.name,"result": model.result]
+		var dictionary: [String: Any] = [:]
+		if model._id != nil {
+			dictionary["_id"] = model._id
+		}
+		dictionary["name"] = model.name
+		dictionary["result"] = model.result
+		return dictionary
 	}
 }

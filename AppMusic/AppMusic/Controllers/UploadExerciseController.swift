@@ -31,6 +31,10 @@ class UploadExerciseController: UIViewController {
 		self.commonData()
 	}
 	
+	deinit {
+		HandleKeyboardWShowHide.getInstance().removeObserver(self)
+	}
+	
 	fileprivate func commonUI() {
 		
 		testManagerVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: UploadExerciseToServerController.identifier) as? UploadExerciseToServerController
@@ -38,6 +42,8 @@ class UploadExerciseController: UIViewController {
 		
 		let tap = UITapGestureRecognizer(target: self, action: #selector(tapView))
 		self.view.addGestureRecognizer(tap)
+		
+		HandleKeyboardWShowHide.getInstance().addObserver(completion: adjustForKeyboard(notification:))
 		
 		self.configTxtQuestion()
 		self.configImagePlus()
@@ -97,8 +103,9 @@ class UploadExerciseController: UIViewController {
 		itemAnswers.append(AnswerModel())
 		print("###\(itemAnswers)")
 		let index = itemAnswers.count
+		print("~~~\(index)")
 		self.tableViewAnswer.beginUpdates()
-		self.tableViewAnswer.insertRows(at: [IndexPath(row: index - 1, section: 0)], with: .none)
+		self.tableViewAnswer.insertRows(at: [IndexPath(row: index - 1 , section: 0)], with: .none)
 		self.tableViewAnswer.endUpdates()
 	}
 	
@@ -112,9 +119,10 @@ class UploadExerciseController: UIViewController {
 		self.tableViewAnswer.layer.borderWidth = self.borderWidth
 		
 		self.tableViewAnswer.rowHeight = UITableView.automaticDimension
-		self.tableViewAnswer.estimatedRowHeight = UITableView.automaticDimension
+		self.tableViewAnswer.estimatedRowHeight = 69
 		
 		let nib = UINib(nibName: AnswerTableViewCell.identifier, bundle: nil)
+		
 		self.tableViewAnswer.register(nib, forCellReuseIdentifier: AnswerTableViewCell.identifier)
 	}
 	
@@ -143,6 +151,21 @@ class UploadExerciseController: UIViewController {
 		logError = "Vui lòng kiểm tra lại các trường đã nhập"
 		return false
 	}
+	
+	fileprivate func adjustForKeyboard(notification: Notification) {
+		guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+		
+		let keyboardScreenEndFrame = keyboardValue.cgRectValue
+		let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+		
+		if notification.name == UIResponder.keyboardWillHideNotification {
+			self.tableViewAnswer.contentInset = .init(top: 0, left: 0, bottom: -view.safeAreaInsets.bottom, right: 0)
+		} else {
+			self.tableViewAnswer.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardViewEndFrame.height - view.safeAreaInsets.bottom, right: 0)
+		}
+		
+		self.tableViewAnswer.scrollIndicatorInsets = tableViewAnswer.contentInset
+	}
 }
 
 extension UploadExerciseController: UITableViewDataSource, UITableViewDelegate {
@@ -159,6 +182,15 @@ extension UploadExerciseController: UITableViewDataSource, UITableViewDelegate {
 			return cell
 		}
 		return UITableViewCell()
+	}
+	
+	func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+		if editingStyle == .delete {
+			tableViewAnswer.beginUpdates()
+			itemAnswers.remove(at: indexPath.row)
+			tableViewAnswer.deleteRows(at: [indexPath], with: .fade)
+			tableViewAnswer.endUpdates()
+		}
 	}
 	
 	@objc func textDidChange(_ sender: UITextField) {
@@ -188,8 +220,17 @@ extension UploadExerciseController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension UploadExerciseController: UploadExerciseToServerDelegate {
+	func remove(section: Int, row: Int?) {
+		if let row = row {
+			itemQuestions[section].answers.remove(at: row)
+		} else {
+			itemQuestions.remove(at: section)
+		}
+	}
+	
 	func clearData() {
 		self.clearAnswer()
 		itemQuestions.removeAll()
 	}
+	
 }

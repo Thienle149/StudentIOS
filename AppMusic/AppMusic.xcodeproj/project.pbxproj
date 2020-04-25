@@ -32,7 +32,6 @@
 		1613CF3624261B6F00996B5A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1613CF3524261B6F00996B5A /* SceneDelegate.swift */; };
 		1613CF3824261B6F00996B5A /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1613CF3724261B6F00996B5A /* AppController.swift */; };
 		1613CF3B24261B6F00996B5A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1613CF3924261B6F00996B5A /* Main.storyboard */; };
-		1613CF3D24261B7100996B5A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1613CF3C24261B7100996B5A /* Assets.xcassets */; };
 		1613CF4024261B7100996B5A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1613CF3E24261B7100996B5A /* LaunchScreen.storyboard */; };
 		1613CF4924261EA600996B5A /* Helvetica 400.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1613CF4824261EA600996B5A /* Helvetica 400.ttf */; };
 		1613CF502426453800996B5A /* CategorySessionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1613CF4E2426453800996B5A /* CategorySessionTableViewCell.swift */; };
@@ -63,6 +62,9 @@
 		1690D77224336E5300ED9064 /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1690D77024336E5300ED9064 /* CategoryTableViewCell.swift */; };
 		1690D77324336E5300ED9064 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1690D77124336E5300ED9064 /* CategoryTableViewCell.xib */; };
 		16A54BC6243F3E0200E6F728 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16A54BC5243F3E0200E6F728 /* CustomTabBarController.swift */; };
+		16C47DEE244EB2CC00215BBC /* AlertLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C47DED244EB2CC00215BBC /* AlertLoadingView.swift */; };
+		16C47DF0244EB2FF00215BBC /* AlertLoadingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16C47DEF244EB2FF00215BBC /* AlertLoadingView.xib */; };
+		16C47DF4244EBC9200215BBC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 16C47DF3244EBC9200215BBC /* Assets.xcassets */; };
 		16D19461242C54950034F278 /* HandleKeyboardWShowHide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D19460242C54950034F278 /* HandleKeyboardWShowHide.swift */; };
 		16E0CC6D2447FDD300F57735 /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16E0CC6B2447FDD300F57735 /* AnswerTableViewCell.swift */; };
 		16E0CC6E2447FDD300F57735 /* AnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 16E0CC6C2447FDD300F57735 /* AnswerTableViewCell.xib */; };
@@ -120,7 +122,6 @@
 		1613CF3524261B6F00996B5A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1613CF3724261B6F00996B5A /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		1613CF3A24261B6F00996B5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		1613CF3C24261B7100996B5A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1613CF3F24261B7100996B5A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1613CF4124261B7100996B5A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1613CF4824261EA600996B5A /* Helvetica 400.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Helvetica 400.ttf"; sourceTree = "<group>"; };
@@ -152,6 +153,9 @@
 		1690D77024336E5300ED9064 /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		1690D77124336E5300ED9064 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 		16A54BC5243F3E0200E6F728 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		16C47DED244EB2CC00215BBC /* AlertLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertLoadingView.swift; sourceTree = "<group>"; };
+		16C47DEF244EB2FF00215BBC /* AlertLoadingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertLoadingView.xib; sourceTree = "<group>"; };
+		16C47DF3244EBC9200215BBC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		16D19460242C54950034F278 /* HandleKeyboardWShowHide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HandleKeyboardWShowHide.swift; sourceTree = "<group>"; };
 		16E0CC6B2447FDD300F57735 /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerTableViewCell.swift; sourceTree = "<group>"; };
 		16E0CC6C2447FDD300F57735 /* AnswerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AnswerTableViewCell.xib; sourceTree = "<group>"; };
@@ -231,9 +235,9 @@
 				1613CF3324261B6F00996B5A /* AppDelegate.swift */,
 				1613CF3524261B6F00996B5A /* SceneDelegate.swift */,
 				1613CF3924261B6F00996B5A /* Main.storyboard */,
-				1613CF3C24261B7100996B5A /* Assets.xcassets */,
 				1613CF3E24261B7100996B5A /* LaunchScreen.storyboard */,
 				1613CF4124261B7100996B5A /* Info.plist */,
+				16C47DF3244EBC9200215BBC /* Assets.xcassets */,
 			);
 			path = AppMusic;
 			sourceTree = "<group>";
@@ -258,7 +262,6 @@
 				16021043244614850089EA91 /* SelectOneViewCell.swift */,
 				1600B6B52447310700D76A7D /* UploadCollectionViewCell.swift */,
 				16E0CC6B2447FDD300F57735 /* AnswerTableViewCell.swift */,
-				16E0CC6C2447FDD300F57735 /* AnswerTableViewCell.xib */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 			children = (
 				162F6D77242DF99600774878 /* Xib */,
 				162F6D75242DF97E00774878 /* AlertWhenUploadFile.swift */,
+				16C47DED244EB2CC00215BBC /* AlertLoadingView.swift */,
 			);
 			path = Alerts;
 			sourceTree = "<group>";
@@ -324,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				162F6D78242DF9C000774878 /* AlertWhenUploadFile.xib */,
+				16C47DEF244EB2FF00215BBC /* AlertLoadingView.xib */,
 			);
 			path = Xib;
 			sourceTree = "<group>";
@@ -393,6 +398,7 @@
 		1690D77424336EB900ED9064 /* FileXib */ = {
 			isa = PBXGroup;
 			children = (
+				16E0CC6C2447FDD300F57735 /* AnswerTableViewCell.xib */,
 				1600B6B62447310700D76A7D /* UploadCollectionViewCell.xib */,
 				1602103724460C060089EA91 /* QuestionAnswerTableViewCell.xib */,
 				1690D77124336E5300ED9064 /* CategoryTableViewCell.xib */,
@@ -505,13 +511,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				16C47DF0244EB2FF00215BBC /* AlertLoadingView.xib in Resources */,
 				1690D77324336E5300ED9064 /* CategoryTableViewCell.xib in Resources */,
 				1613CF4024261B7100996B5A /* LaunchScreen.storyboard in Resources */,
+				16C47DF4244EBC9200215BBC /* Assets.xcassets in Resources */,
 				1673D2D724414D3C00691F0C /* WidgetView.xib in Resources */,
 				1613CF512426453800996B5A /* CategorySessionTableViewCell.xib in Resources */,
 				1639B405242A169D004D1331 /* ForYouCollectionViewCell.xib in Resources */,
 				16E0CC73244806A200F57735 /* RadioButtonV2.xib in Resources */,
-				1613CF3D24261B7100996B5A /* Assets.xcassets in Resources */,
 				1602104024460F490089EA91 /* RadioButton.xib in Resources */,
 				1600B6B82447310700D76A7D /* UploadCollectionViewCell.xib in Resources */,
 				162F6D79242DF9C000774878 /* AlertWhenUploadFile.xib in Resources */,
@@ -613,6 +620,7 @@
 				1639B401242A12C4004D1331 /* ForYouController.swift in Sources */,
 				16512A9124337FDE000A1293 /* CustomImageView.swift in Sources */,
 				16021042244611350089EA91 /* Pulsing.swift in Sources */,
+				16C47DEE244EB2CC00215BBC /* AlertLoadingView.swift in Sources */,
 				1621452C2426574100177496 /* RecentlyAddedModel.swift in Sources */,
 				16F89572242B98B400942A82 /* UploadServerController.swift in Sources */,
 				1613CF502426453800996B5A /* CategorySessionTableViewCell.swift in Sources */,

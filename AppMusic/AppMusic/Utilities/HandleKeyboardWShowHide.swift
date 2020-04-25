@@ -32,4 +32,8 @@ class HandleKeyboardWShowHide {
 			completion(notification)
 		}
 	}
+	
+	func removeObserver(_ vc: UIViewController) {
+		NotificationCenter.default.removeObserver(vc, name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+	}
 }

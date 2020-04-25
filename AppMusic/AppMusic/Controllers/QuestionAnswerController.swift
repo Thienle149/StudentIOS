@@ -12,7 +12,7 @@ class QuestionAnswerController: AppMusicController {
 	var tableView: UITableView!
 	var testCells: [TextCellModel] = []
 	let sectionsName = ["Bài tập","Đã làm"]
-	var testVC: TestController!
+	var testVCs: [TestController] = []
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -21,25 +21,50 @@ class QuestionAnswerController: AppMusicController {
 		self.commonData()
 	}
 	
+	deinit {
+		NotificationCenter.default.removeObserver(self, name: NSNotification.Name(SocketEventName.on.test.rawValue), object: nil)
+	}
+	
 	fileprivate func commonUI() {
-		testVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController") as? TestController
+		
 		self.configTableView()
 	}
 	
 	fileprivate func commonData() {
-		getDataTestFromServer {
+		getDataTestFromServer(look: { self.initTestControllers() }) {
 			self.tableView.reloadData()
 		}
+		self.observeAppendTestFromServer()
 		testCells.append(TextCellModel(open: false, name: sectionsName[1], contentRow: []))
 	}
 	
-	fileprivate func getDataTestFromServer(_ completion:@escaping () -> Void) {
+	fileprivate func observeAppendTestFromServer() {
+		NotificationCenter.default.addObserver(forName: Notification.Name(SocketEventName.on.test.rawValue), object: nil, queue: nil) { [weak self](notification) in
+			if let dictText = notification.object  as? [String: Any?] {
+				if let section = self?.testCells.firstIndex(where: { (item) -> Bool in
+					return item.name == self?.sectionsName[0]
+				}) {
+					self?.testCells[section].contentRow.append(TextModel(dict: dictText))
+					if let open = self?.testCells[section].open, let count = self?.testCells[section].contentRow.count {
+						if open {
+							self?.tableView.beginUpdates()
+							self?.tableView.insertRows(at: [IndexPath(row: count, section: section)], with: .none)
+							self?.tableView.endUpdates()
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	fileprivate func getDataTestFromServer(look: @escaping () -> Void = {},completion:@escaping () -> Void) {
 		NetworkServices.getInstance().getData(route: "/test") { (dictTests, error) in
 			if error == nil {
 				if let dictTests = dictTests {
 					var itemTests:[TextModel] = []
 					for dictTest in dictTests {
 						itemTests.append(TextModel(dict: dictTest))
+						look()
 					}
 					self.testCells.append(TextCellModel(open: false, name: self.sectionsName[0], contentRow: itemTests))
 					completion()
@@ -47,6 +72,12 @@ class QuestionAnswerController: AppMusicController {
 			} else {
 				AlertWhenUploadFile.getInstance(self.view).start(status: .failure, message: error as? String)
 			}
+		}
+	}
+	
+	fileprivate func initTestControllers () {
+		if let testVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController") as? TestController {
+			self.testVCs.append(testVC)
 		}
 	}
 	
@@ -71,6 +102,7 @@ extension QuestionAnswerController: UITableViewDataSource, UITableViewDelegate {
 	func numberOfSections(in tableView: UITableView) -> Int {
 		return testCells.count
 	}
+	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		if testCells[section].open == false {
 			return 1
@@ -105,10 +137,16 @@ extension QuestionAnswerController: UITableViewDataSource, UITableViewDelegate {
 			tableView.endUpdates()
 		} else {
 			if let testId = self.testCells[indexPath.section].contentRow[indexPath.row - 1]._id {
-				testVC.setUp(testId)
-				self.present(testVC,animated: true,completion: {
-					self.testVC.titleTest.title = self.testCells[indexPath.section].contentRow[indexPath.row - 1].name
-				})
+				//				testVCs[indexPath.row - 1].setUp(testId)
+				if let testVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController") as? TestController {
+					testVC.setUp(testId)
+					self.present(testVC,animated: true,completion: {
+						testVC.titleTest.title = self.testCells[indexPath.section].contentRow[indexPath.row - 1].name
+					})
+				}
+				//				self.present(testVCs[indexPath.row - 1],animated: true,completion: {
+				//					self.testVCs[indexPath.row - 1].titleTest.title = self.testCells[indexPath.section].contentRow[indexPath.row - 1].name
+				//				})
 			}
 		}
 	}

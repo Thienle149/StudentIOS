@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="../../Resource/icon/logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../Resource/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../Resource/style/import.css">
+    <title>Upload</title>
+</head>
+
+<body>
+    <div class="containers">
+        <%- include ('../partials/header') %>
+        <h3 id="alertID"></h3>
+        <form enctype="multipart/form-data">
+            <p>Upload test from file elxs:</p>
+            <input type="file" name="elsx" id="fileID" accept=".xlsx">
+            <input type="button" value="Submit" id="submitID">
+        </form>
+        <div class="table-test-question">
+            <%- include('../component/tableTest.ejs') %>
+            <%- include('../component/tableQuestion.ejs') %>
+        </div>
+        <%- include('../component/tableAnswer.ejs') %>
+    </div>
+</body>
+<script src="../../Resource/xlsx.full.min.js"></script>
+<script src="../../Resource/jquery-3.5.0.min.js"></script>
+<script src="../socket.io/socket.io.js"></script>
+<script src="../../Resource/import.js"></script>
+<script src="../../Resource/bootstrap-4.4.1-dist/js/bootstrap.bundle.js"></script>
+
+</html>

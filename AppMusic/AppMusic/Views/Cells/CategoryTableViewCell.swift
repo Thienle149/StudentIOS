@@ -41,11 +41,14 @@ class CategoryTableViewCell: UITableViewCell {
 	}
 	
 	override func setSelected(_ selected: Bool, animated: Bool) {
-		super.setSelected(selected, animated: animated)
+//		super.setSelected(selected, animated: animated)
 	}
 	
 	func setUp(text: String?) {
 		lblName.text = text
+//		imageCategory.snp.makeConstraints({
+//			$0.height.width.equalTo(0)
+//		})
 	}
 	
 	func setUp(media: MediaModel, index: IndexPath, type: LoadType) {
@@ -62,8 +65,10 @@ class CategoryTableViewCell: UITableViewCell {
 	}
 	
 	override func prepareForReuse() {
+		super.prepareForReuse()
 		DispatchQueue.main.async {
 			self.imageCategory.image = nil
+			self.textLabel?.text = nil
 		}
 	}
 	
