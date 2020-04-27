@@ -27,9 +27,16 @@ function handleTagTestUI(id, callback) {
   $(".js-test").each(function (index, element) {
     let tagChildID = $(element).children()[0];
     let tagChildTimer = $(element).children()[2];
-    let tagFuncUITest = $($($($(element).children()[3]).children()[0]).children("div")).children()[0]
+    let tagFuncUITest = $(
+      $($($(element).children()[3]).children()[0]).children("div")
+    ).children()[0];
     if ($.trim($(tagChildID).text()) === id) {
-      return callback($(element), $(tagChildID), $(tagChildTimer),$(tagFuncUITest));
+      return callback(
+        $(element),
+        $(tagChildID),
+        $(tagChildTimer),
+        $(tagFuncUITest)
+      );
     }
   });
 }
@@ -38,9 +45,11 @@ function handleTagQuestionUI(id, callback) {
   $(".js-question").each((index, element) => {
     let tagChildID = $(element).children()[0];
     let tagChildName = $(element).children()[1];
-    let tagFuncUIQuestion= $($($($(element).children()[2]).children()[0]).children("div")).children()[0]
+    let tagFuncUIQuestion = $(
+      $($($(element).children()[2]).children()[0]).children("div")
+    ).children()[0];
     if ($.trim($(tagChildID).text()) === $.trim(id)) {
-      return callback($(element), $(tagChildName),$(tagFuncUIQuestion));
+      return callback($(element), $(tagChildName), $(tagFuncUIQuestion));
     }
   });
 }
@@ -50,9 +59,16 @@ function handleTagAnswerUI(id, callback) {
     let tagChildID = $(element).children()[0];
     let tagChildName = $(element).children()[1];
     let tagChildResult = $(element).children()[2];
-    let tagFuncAnswer= $($($($(element).children()[3]).children()[0]).children("div")).children()[0]
+    let tagFuncAnswer = $(
+      $($($(element).children()[3]).children()[0]).children("div")
+    ).children()[0];
     if ($.trim($(tagChildID).text()) === $.trim(id)) {
-      return callback($(element), $(tagChildName), $(tagChildResult), $(tagFuncAnswer));
+      return callback(
+        $(element),
+        $(tagChildName),
+        $(tagChildResult),
+        $(tagFuncAnswer)
+      );
     }
   });
 }
@@ -79,7 +95,7 @@ $("#js-answer-result-true").click(function (e) {
 
 /* #region  Function Main */
 
-      /* #region  Send Question Answer */
+/* #region  Send Question Answer */
 $("#submitID").click(() => {
   var files = $("input#fileID")[0].files;
   f = files[0];
@@ -87,7 +103,7 @@ $("#submitID").click(() => {
   var reader = new FileReader();
   reader.onload = function (e) {
     var data = new Uint8Array(e.target.result);
-    var workbook = XLSX.read(data, { type: "array"});
+    var workbook = XLSX.read(data, { type: "array" });
     var sheet_name_list = workbook.SheetNames;
 
     sheet_name_list.forEach((sheetName) => {
@@ -109,11 +125,10 @@ $("#submitID").click(() => {
         }
         // ignore cell empty or cell = ""
         if (value == "") {
-          continue
+          continue;
         }
 
-        if (!data[row]) 
-        data[row] = {};
+        if (!data[row]) data[row] = {};
         data[row][headers[col].toLowerCase()] = value;
       }
       //drop those first two rows which are empty
@@ -140,7 +155,7 @@ $("#submitID").click(() => {
 
 /* #endregion */
 
-      /* #region  Test */
+/* #region  Test */
 function updateUITest(id, name, timer) {
   $("#sendTestID").attr("onclick", `updateTest("${id}","${name}")`);
   $("#exampleModalLabel").html(name);
@@ -183,7 +198,7 @@ function clickTest(element, id) {
   });
 }
 
-function updateTest(id,name) {
+function updateTest(id, name) {
   let timer = $("#recipient-name").val();
   $.ajax({
     type: "PUT",
@@ -195,9 +210,11 @@ function updateTest(id,name) {
       if (response.statusCode == 200) {
         let result = response.result;
         if (result.nModified > 0) {
-          handleTagTestUI(id, (element, tagID, tagTimer,tagFunc) => {
+          handleTagTestUI(id, (element, tagID, tagTimer, tagFunc) => {
             tagTimer.text(timer);
-          tagFunc.attr({'onclick':`updateUITest('${id}','${name}','${timer}')`})
+            tagFunc.attr({
+              onclick: `updateUITest('${id}','${name}','${timer}')`,
+            });
           });
           alertResponse("Successed update");
         }
@@ -231,22 +248,31 @@ function deleteTest(id) {
   });
 }
 
-function updateRun(id,status) {
-  let open = !status
+function updateRun(element, id, status) {
+  
+  let open = status === 'true' ? false : true;
   $.ajax({
     type: "PUT",
     url: "/test/import/open",
-    data: JSON.stringify({_id: id, open: open}),
+    data: JSON.stringify({ _id: id, open: open }),
     dataType: "json",
     contentType: "application/json",
     success: function (response) {
-      console.log(response)
-    }
+      if (response.statusCode === 200) {
+        let result = response.result;
+        if (result.nModified > 0) {
+          $(element).text(open == true ? "Stop" : "Run");
+          $(element).attr({
+            onclick: `updateRun(this,'${id}','${open}')`,
+          });
+        }
+      }
+    },
   });
 }
 /* #endregion */
 
-      /* #region  Question */
+/* #region  Question */
 function clickQuestion(element, id) {
   $(".table-right tbody tr").removeClass("row-selected");
   $(element).addClass("row-selected");
@@ -265,7 +291,7 @@ function clickQuestion(element, id) {
              <td>${answer._id}</td>
              <td>${answer.name}</td>
              <td><input type="radio" name="answer" ${
-               answer.result === true ? 'checked' : ''
+               answer.result === true ? "checked" : ""
              } disabled></td>
              <td>
              <div class="dropdown">
@@ -306,9 +332,9 @@ function updateQuestion(id) {
       if (response.statusCode == 200) {
         let result = response.result;
         if (result.nModified > 0) {
-          handleTagQuestionUI(id, (tagParent, tagName,tagFunc) => {
+          handleTagQuestionUI(id, (tagParent, tagName, tagFunc) => {
             tagName.text(name);
-            tagFunc.attr({'onclick':`updateUIQuestion('${id}','${name}')`})
+            tagFunc.attr({ onclick: `updateUIQuestion('${id}','${name}')` });
           });
           $("#table-answerID tbody").empty();
           alertResponse("Successed update question");
@@ -344,21 +370,21 @@ function deleteQuestion(id) {
 }
 /* #endregion */
 
-      /* #region  Answer */
+/* #region  Answer */
 
 function clickAnswer(element) {
   $(".table-answers tbody tr").removeClass("row-selected");
   $(element).addClass("row-selected");
 }
 
-function updateUIAnswer(element,id, name, questionID) {
+function updateUIAnswer(element, id, name, questionID) {
   $(".js-answer-id").text(`ID: ${id}`);
   $(".js-answer-name").val(name);
 
-  let tagResult = $($($(element).parents()[3]).children()[2]).children()
+  let tagResult = $($($(element).parents()[3]).children()[2]).children();
   let tagResultTrue = $("#js-answer-result-true");
   let tagResultFalse = $("#js-answer-result-false");
-  let result = $(tagResult).prop('checked')
+  let result = $(tagResult).prop("checked");
 
   if (result === true) {
     $("#js-answer-option-true").prop("checked", true);
@@ -369,7 +395,7 @@ function updateUIAnswer(element,id, name, questionID) {
     tagResultTrue.removeClass("focus active");
     tagResultFalse.addClass("focus active");
   }
-  
+
   $("#js-send-answer").attr({
     onclick: `updateAnswer("${id}","${questionID}")`,
   });

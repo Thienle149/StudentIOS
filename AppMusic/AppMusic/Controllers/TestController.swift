@@ -16,13 +16,20 @@ class TestController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	var items: [QuestionModel] = []
 	var selectOneViews: [SelectOneView] = []
+	var testID: String = ""
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		configTableView()
 	}
 	
-	func setUp(_ testID: String) {
+//	deinit {
+//		NotificationCenter.default.removeObserver(self, name: Notification.Name(SocketEventName.on.test_open.rawValue), object: nil)
+//	}
+	
+	func setUp(_ testID: String, open: Bool) {
+		self.testID = testID
+		self.notifiStatusTestFromServer()
 		AlertLoadingView.getInstance(self.view).start()
 		if items.isEmpty {
 			getDataAnswerQuestion(with: testID, look: { answers in
@@ -31,6 +38,7 @@ class TestController: UIViewController {
 				if let view = self?.view {
 				AlertLoadingView.getInstance(view).stop()
 				}
+				self?.tableView.isUserInteractionEnabled = open
 				self?.tableView.tableFooterView = self?.footerView()
 				self?.tableView.reloadData()
 			}
@@ -56,6 +64,17 @@ class TestController: UIViewController {
 				}
 			} else  {
 				AlertWhenUploadFile.getInstance(self.view).start(status: .failure,message: error as? String)
+			}
+		}
+	}
+	
+	fileprivate func notifiStatusTestFromServer() {
+		NotificationCenter.default.addObserver(forName: Notification.Name(SocketEventName.on.test_open.rawValue), object: nil, queue: .main) { [weak self](notification) in
+			let dict = notification.object as? [String: Any?]
+			if let _id = dict?["_id"] as? String,let open = dict?["open"] as? Bool {
+				if self?.testID == _id  {
+					self?.tableView.isUserInteractionEnabled = open
+				}
 			}
 		}
 	}

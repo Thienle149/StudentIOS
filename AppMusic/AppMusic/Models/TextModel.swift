@@ -11,6 +11,7 @@ struct TextModel {
 	var _id: String!
 	var name: String!
 	var date: Date?
+	var open: Bool!
 	
 	init (_id: String,name: String,date: Date?) {
 		self._id = _id
@@ -27,6 +28,9 @@ struct TextModel {
 		}
 		if let date = dict["date"] as? Date {
 			self.date = date
+		}
+		if let open = dict["open"] as? Bool {
+			self.open = open
 		}
 	}
 }

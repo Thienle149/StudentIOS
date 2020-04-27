@@ -18,5 +18,6 @@ class SocketEventName {
 		case media = "server-emit-data-media"
 		case medias = "server-emit-data-medias"
 		case test = "server-emit-data-test"
+		case test_open = "server-emit-data-test-open"
 	}
 }

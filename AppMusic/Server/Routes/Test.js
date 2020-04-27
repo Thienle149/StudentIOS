@@ -160,6 +160,8 @@ route.post("/import", async (req, res) => {
 route.put("/import/open", async (req,res)=>{
   console.log(req.body["_id"])
   let testPost = await testDB.updateOne({_id: req.body["_id"]},{$set:{open: req.body["open"]}}) 
+  let io = req.app.locals.io
+  io.sockets.emit(socketEventName.emit.test_open,{_id: req.body["_id"],open: req.body["open"]})
   res.json(response.getJson(res.statusCode,testPost))
 }) 
 /* #endregion */

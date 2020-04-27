@@ -136,17 +136,16 @@ extension QuestionAnswerController: UITableViewDataSource, UITableViewDelegate {
 			tableView.reloadSections(IndexSet(integer: indexPath.section), with: .none)
 			tableView.endUpdates()
 		} else {
-			if let testId = self.testCells[indexPath.section].contentRow[indexPath.row - 1]._id {
+			if let testId = self.testCells[indexPath.section].contentRow[indexPath.row - 1]._id,let testOpen = self.testCells[indexPath.section].contentRow[indexPath.row - 1].open {
 				//				testVCs[indexPath.row - 1].setUp(testId)
 				if let testVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "TestController") as? TestController {
-					testVC.setUp(testId)
+					testVC.setUp(testId,open: testOpen)
 					self.present(testVC,animated: true,completion: {
-						testVC.titleTest.title = self.testCells[indexPath.section].contentRow[indexPath.row - 1].name
+						DispatchQueue.main.async {
+							testVC.titleTest.title = self.testCells[indexPath.section].contentRow[indexPath.row - 1].name
+						}
 					})
 				}
-				//				self.present(testVCs[indexPath.row - 1],animated: true,completion: {
-				//					self.testVCs[indexPath.row - 1].titleTest.title = self.testCells[indexPath.section].contentRow[indexPath.row - 1].name
-				//				})
 			}
 		}
 	}

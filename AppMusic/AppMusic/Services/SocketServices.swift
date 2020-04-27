@@ -39,6 +39,7 @@ class SocketServices: NSObject{
 	func responseFromServer() {
 		self.observeMediaOfServer()
 		self.observeTestOfServer()
+		self.observerTestOpen()
 	}
 	
 	fileprivate func observeMediaOfServer() {
@@ -50,6 +51,12 @@ class SocketServices: NSObject{
 	fileprivate func observeTestOfServer() {
 		self.socket.on(SocketEventName.on.test.rawValue) { (data, ack) in
 			NotificationCenter.default.post(name: Notification.Name(SocketEventName.on.test.rawValue), object: data[0])
+		}
+	}
+	
+	fileprivate func observerTestOpen() {
+		self.socket.on(SocketEventName.on.test_open.rawValue) { (data, ack) in
+			NotificationCenter.default.post(name: Notification.Name(SocketEventName.on.test_open.rawValue), object: data[0])
 		}
 	}
 }
