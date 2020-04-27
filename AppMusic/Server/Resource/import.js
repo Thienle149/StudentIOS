@@ -27,8 +27,9 @@ function handleTagTestUI(id, callback) {
   $(".js-test").each(function (index, element) {
     let tagChildID = $(element).children()[0];
     let tagChildTimer = $(element).children()[2];
+    let tagFuncUITest = $($($($(element).children()[3]).children()[0]).children("div")).children()[0]
     if ($.trim($(tagChildID).text()) === id) {
-      return callback($(element), $(tagChildID), $(tagChildTimer));
+      return callback($(element), $(tagChildID), $(tagChildTimer),$(tagFuncUITest));
     }
   });
 }
@@ -37,8 +38,9 @@ function handleTagQuestionUI(id, callback) {
   $(".js-question").each((index, element) => {
     let tagChildID = $(element).children()[0];
     let tagChildName = $(element).children()[1];
+    let tagFuncUIQuestion= $($($($(element).children()[2]).children()[0]).children("div")).children()[0]
     if ($.trim($(tagChildID).text()) === $.trim(id)) {
-      return callback($(element), $(tagChildName));
+      return callback($(element), $(tagChildName),$(tagFuncUIQuestion));
     }
   });
 }
@@ -48,8 +50,9 @@ function handleTagAnswerUI(id, callback) {
     let tagChildID = $(element).children()[0];
     let tagChildName = $(element).children()[1];
     let tagChildResult = $(element).children()[2];
+    let tagFuncAnswer= $($($($(element).children()[3]).children()[0]).children("div")).children()[0]
     if ($.trim($(tagChildID).text()) === $.trim(id)) {
-      return callback($(element), $(tagChildName), $(tagChildResult));
+      return callback($(element), $(tagChildName), $(tagChildResult), $(tagFuncAnswer));
     }
   });
 }
@@ -139,7 +142,7 @@ $("#submitID").click(() => {
 
       /* #region  Test */
 function updateUITest(id, name, timer) {
-  $("#sendTestID").attr("onclick", `updateTest("${id}")`);
+  $("#sendTestID").attr("onclick", `updateTest("${id}","${name}")`);
   $("#exampleModalLabel").html(name);
   $("#recipient-name").val(timer);
 }
@@ -168,7 +171,7 @@ function clickTest(element, id) {
                             <img class="three_dot dropdown-toggle" src="../../Resource/icon/feedmenu.png" id="dropdownMenu2"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="dropdown-menu">
-                                <a class="dropdown-item" data-toggle="modal" data-target="#questionModal" data-whatever="@mdo" onclick = "updateUIQuestion('${question._id}','${question.name}')" >Update</a>
+                                <a class="dropdown-item" data-toggle="modal" data-target="#questionModal" data-whatever="@mdo" onclick ="updateUIQuestion('${question._id}','${question.name}')">Update</a>
                                 <a class="dropdown-item" href="#" onclick = "deleteQuestion('${question._id}')">Delete</a>
                             </div>
                     </td>
@@ -180,7 +183,7 @@ function clickTest(element, id) {
   });
 }
 
-function updateTest(id) {
+function updateTest(id,name) {
   let timer = $("#recipient-name").val();
   $.ajax({
     type: "PUT",
@@ -192,8 +195,9 @@ function updateTest(id) {
       if (response.statusCode == 200) {
         let result = response.result;
         if (result.nModified > 0) {
-          handleTagTestUI(id, (element, tagID, tagTimer) => {
+          handleTagTestUI(id, (element, tagID, tagTimer,tagFunc) => {
             tagTimer.text(timer);
+          tagFunc.attr({'onclick':`updateUITest('${id}','${name}','${timer}')`})
           });
           alertResponse("Successed update");
         }
@@ -247,7 +251,7 @@ function clickQuestion(element, id) {
              <td>${answer._id}</td>
              <td>${answer.name}</td>
              <td><input type="radio" name="answer" ${
-               answer.result === true ? "checked" : ""
+               answer.result === true ? 'checked' : ''
              } disabled></td>
              <td>
              <div class="dropdown">
@@ -255,7 +259,7 @@ function clickQuestion(element, id) {
              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              <div class="dropdown-menu">
              <a class="dropdown-item" data-toggle="modal" data-target="#answerModal" data-whatever="@mdo"
-                 onclick="updateUIAnswer('${answer._id}','${
+                 onclick="updateUIAnswer(this,'${answer._id}','${
             answer.name
           }','${id}')">Update</a>
              <a class="dropdown-item" href="#" onclick = "deleteAnswer('${
@@ -288,8 +292,9 @@ function updateQuestion(id) {
       if (response.statusCode == 200) {
         let result = response.result;
         if (result.nModified > 0) {
-          handleTagQuestionUI(id, (tagParent, tagName) => {
+          handleTagQuestionUI(id, (tagParent, tagName,tagFunc) => {
             tagName.text(name);
+            tagFunc.attr({'onclick':`updateUIQuestion('${id}','${name}')`})
           });
           $("#table-answerID tbody").empty();
           alertResponse("Successed update question");
@@ -332,21 +337,16 @@ function clickAnswer(element) {
   $(element).addClass("row-selected");
 }
 
-function updateUIAnswer(id, name, questionID) {
+function updateUIAnswer(element,id, name, questionID) {
   $(".js-answer-id").text(`ID: ${id}`);
   $(".js-answer-name").val(name);
+
+  let tagResult = $($($(element).parents()[3]).children()[2]).children()
   let tagResultTrue = $("#js-answer-result-true");
   let tagResultFalse = $("#js-answer-result-false");
-  let result =
-    $("input[name='answer']:checked").val() === "true" ? true : false;
-  $("#js-send-answer").attr({
-    onclick: `updateAnswer("${id}","${questionID}")`,
-  });
-  $("#js-send-answer").attr({
-    onclick: `updateAnswer("${id}","${questionID}")`,
-  });
+  let result = $(tagResult).prop('checked')
 
-  if (result === "true") {
+  if (result === true) {
     $("#js-answer-option-true").prop("checked", true);
     tagResultFalse.removeClass("focus active");
     tagResultTrue.addClass("focus active");
@@ -355,6 +355,10 @@ function updateUIAnswer(id, name, questionID) {
     tagResultTrue.removeClass("focus active");
     tagResultFalse.addClass("focus active");
   }
+  
+  $("#js-send-answer").attr({
+    onclick: `updateAnswer("${id}","${questionID}")`,
+  });
 }
 
 function updateAnswer(id, questionID) {
