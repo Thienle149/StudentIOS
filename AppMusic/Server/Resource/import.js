@@ -230,6 +230,20 @@ function deleteTest(id) {
     },
   });
 }
+
+function updateRun(id,status) {
+  let open = !status
+  $.ajax({
+    type: "PUT",
+    url: "/test/import/open",
+    data: JSON.stringify({_id: id, open: open}),
+    dataType: "json",
+    contentType: "application/json",
+    success: function (response) {
+      console.log(response)
+    }
+  });
+}
 /* #endregion */
 
       /* #region  Question */

@@ -13,6 +13,10 @@ const CategorySchema = mongoose.Schema({
         type: Date,
         default: Date.now()
     },
+    open: {
+        type: Boolean,
+        default: false
+    }
 })
 
 module.exports = mongoose.model("Test",CategorySchema)

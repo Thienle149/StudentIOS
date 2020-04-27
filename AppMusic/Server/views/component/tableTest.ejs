@@ -23,6 +23,7 @@
                                 <a class="dropdown-item" data-toggle="modal" data-target="#testModal"
                                     data-whatever="@mdo"
                                     onclick="updateUITest(`<%=test._id%>`,`<%=test.name%>`,`<%= test.timer%>`)">Update</a>
+                                <a class="dropdown-item" href="#" onclick="updateRun(`<%= test._id%>`,`<%= test.open%>`)" ><%= test.open == true?"Stop":"Run"%></a>
                                 <a class="dropdown-item" href="#" onclick="deleteTest(`<%= test._id%>`)">Delete</a>
                             </div>
                         </div>
